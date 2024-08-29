@@ -40,6 +40,8 @@ docker run --rm \
  -e WEBSOCKETS_ENABLED=true \
  -e RTP_PORT_RANGE=10000-10099 \
  -p 8188:8188 \
+ -p 8088:8088 \
+ -p 7088:7088 \
  -p 10000-10099:10000-10099/udp \
  -ti swmansion/janus-gateway:0.11.8-0
 ```
@@ -253,6 +255,23 @@ general: {
                   # handlers (default=true)
 }
 ```
+
+#### HTTP Transport
+
+- HTTP_BASE_PATH - Janus API, base path (default=/janus)
+- HTTP_ENABLE - If set to true, Janus API is enabled (default=false)
+- HTTP_PORT - Janus API port (default=8088)
+- HTTP_IP - Bind to this IP address (default=None, only `--network=host`) 
+- HTTP_ACL - Allow access from specific ips. Partial entries possible(example: `127.,192.168.0.`) (default=None, only `--network=host`)
+- HTTP_ACL_FORWARDED: Set to `true` to trust `X-Forwarded-For` header for acl checks. (default=None, only `--network=host`)
+- HTTP_CORS_ALLOW_ORIGIN: Allowed CORS origins (default=*)
+- HTTP_ADMIN_API_BASE_PATH - Admin API base path (default=/admin)
+- HTTP_ADMIN_API_ENABLE - If set to true, Admin API is enabled (default=false)
+- HTTP_ADMIN_API_PORT - Admin API port (default=7088)
+- HTTP_ADMIN_API_IP - Bind Admin API to this address (default=None, only `--network=host`)
+- HTTP_ADMIN_API_ACL - Allow access from specific ips. Partial entries possible(example: `127.,192.168.0.`) (default=None, only `--network=host`)
+- HTTP_ADMIN_API_ACL_FORWARD - Set to `true` to trust `X-Forwarded-For` header for acl checks. (default=None, only `--network=host`)
+
 
 ## Copyright and License
 
